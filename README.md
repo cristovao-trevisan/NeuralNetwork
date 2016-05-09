@@ -6,17 +6,22 @@ The docs for the package are inside the package/docs folder
 
 Compilation, docs generation and execution by the following command lines (all executed in the src folder):
 
-*Command line to generate the docs:
-	javadoc -d cristovaotrevisan/neuralnetwork/docs cristovaotrevisan.neuralnetwork
-*Command line to compile the code:
-	* Compile the NeuralNode.java:
-	javac cristovaotrevisan/neuralnetwork/NeuralNode.java
-	* Compile the ActivatonType.java:
-	javac cristovaotrevisan/neuralnetwork/ActivationType.java
-	* Compile the Main file (and the NeuralNetwork.java by association)
-	javac Main.java
-*Command line to execute program:
-	java Main
+* Command line to generate the docs:
+ 
+	`javadoc -d cristovaotrevisan/neuralnetwork/docs cristovaotrevisan.neuralnetwork`
+* Command line to compile the code:
+    * Compile the NeuralNode.java:
+    
+    	`javac cristovaotrevisan/neuralnetwork/NeuralNode.java`
+    * Compile the ActivatonType.java:
+    
+    	`javac cristovaotrevisan/neuralnetwork/ActivationType.java`
+    * Compile the Main file (and the NeuralNetwork.java by association)
+    
+    	`javac Main.java`
+* Command line to execute program:
+
+ `java Main`
 
 
 The Main file executes the exercise, which is (it's in portuguese because I'm lazy and that's' it):
