@@ -159,8 +159,9 @@ public class NeuralNetwork {
 		@param fileName Path to file
 		@param rate Learning rate
 		@param times Number of epochs
+		@param tolerance Ends if converges before "times"
 	*/
-	public void trainInputFromFile(String fileName, float rate, int times) throws Exception{
+	public void trainInputFromFile(String fileName, float rate, int times, float tolerance) throws Exception{
 		Scanner scan;
 		File file = new File(fileName);
 		scan = new Scanner(file);
@@ -188,12 +189,27 @@ public class NeuralNetwork {
     			output[i][j] = scan.nextFloat();
     	}
 
+    	boolean converged = false;
+    	training_loop:
     	for (int k=0; k<times; k++){
 	    	for (int i=0; i<count; i++)
 	    		this.trainInput(input[i], output[i], rate);	
-	    	System.out.format("Training: %d%%\r", k*100/times);
+	    	System.out.format("\rTraining: %d%%", k*100/times);
+	    	converged = true;
+	    	for (int i=0; i<count; i++){
+	    		float[] current_output = this.calculate(input[i]);
+	    		for (int j=0; j<current_output.length; j++){
+	    			if (current_output[j]+tolerance<output[i][j] || current_output[j]-tolerance>output[i][j]){
+	    				converged = false;
+	    			}
+	    		}
+	    	}
+	    	if(converged) break training_loop;
 	    }
-	    System.out.println("Training: 100%");
+	    if (converged)
+	    	System.out.println(".. Network Converged");
+    	else
+	    	System.out.println("Training: 100%");
 	};
 
 	/**

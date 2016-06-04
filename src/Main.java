@@ -3,7 +3,7 @@ import cristovaotrevisan.neuralnetwork.*;
 public class Main{
 	public static void main(String args[]){
 		try{
-			workOnHomework();
+			testBinyraOrFromFile();
 		}
 		catch (Exception e){
 			e.printStackTrace();
@@ -18,14 +18,24 @@ public class Main{
 		// 3 nodes on the output layer
 		NeuralNetwork n = new NeuralNetwork(ActivationType.SIGMOID, 4, 15, 3);
 
+		float tolerance = 0.3f;
 		// train using input from file with 0.2 learning rate and 10000 epochs
-		n.trainInputFromFile("../training_cases.in", 0.1f, 10000);
+		n.trainInputFromFile("../training_cases.in", 0.1f, 10000, tolerance);
 
 		// test cases, print the tests and error count (with 0.2 absolute tolerance)
-		float tolerance = 0.2f;
 		n.printTestFromFile("../test_cases.in");
 		System.out.format("Error Count with %.4f tolerance:\n", tolerance);
 		System.out.println(n.testInputFromFile("../test_cases.in", tolerance));
+	}
+
+	public static void testBinyraOrFromFile() throws Exception{
+		NeuralNetwork n = new NeuralNetwork(ActivationType.SIGMOID, 2, 2, 1);
+		float tolerance = 0.01f;
+		n.trainInputFromFile("../binary_or.in", 3f, 10000, tolerance);
+
+		n.printTestFromFile("../binary_or.in");
+		System.out.format("Error Count with %.4f tolerance:\n", tolerance);
+		System.out.println(n.testInputFromFile("../binary_or.in", tolerance));
 	}
 
 
